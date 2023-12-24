@@ -25,20 +25,24 @@ of this document.
 I think it's probably better to beef up the binutils documentation rather than
 duplicating it here.
 
-# Registers
+# Registers - Thanh ghi
 
 Registers are the most important part of any processor. RISC-V defines various
 types, depending on which extensions are included: The general registers (with
 the program counter), control registers, floating point registers (F extension),
 and vector registers (V extension).
 
-## General registers
+Thanh ghi là phần quan trong nhất trong bất kỳ bộ vi xử lý nào. RISC-V định nghĩa các loại khác nhau, phụ thuộc vào mức độ mổ rộng chúng gồm có: Các thanh ghi đa dụng (gồm cả bộ đếm chương trình), các thanh ghi điều khiển, thanh ghi dấu chấm động (phần mở rộng là F) và thanh ghi vector (phần mở rộng V).
+
+## General registers - Thanh ghi đa dụng
 
 The RV32I base integer ISA includes 32 registers, named `x0` to `x31`. The
 program counter `PC` is separate from these registers, in contrast to other
 processors such as the ARM-32. The first register, `x0`, has a special function:
 Reading it always returns 0 and writes to it are ignored. As we will see later,
 this allows various tricks and simplifications.
+
+Tập lệnh RV32I bao gồm 32 thanh ghi được đặt tên từ x0 đến x31. Thanh ghi bộ đếm chương trình PC tách biệt trong nhóm nhũng thanh ghi này, điều này trái ngược với tổ chức của các vi xử lý khác như ARM32. Thanh ghi đầu x0 có chức năng đặc biệt, giá trị của nó khi đọc luôn có giá trị 0 và khi vào nó không bị ảnh hưởng.
 
 In practice, the programmer doesn't use this notation for the registers. Though
 `x1` to `x31` are all equally general-use registers as far as the processor is
@@ -47,6 +51,8 @@ assembler, they are given standardized names as part of the RISC-V **application
 binary interface** (ABI). This is what you will usually see in code listings. If
 you really want to see the numeric register names, the `-M` argument to objdump
 will provide them.
+
+Thực tế, lập trình viên không dùng những ký hiệu này cho các thanh ghi. Dù các thanh ghi x1 đến x31 đều có chức năng đa dụng như nhau, một vài thanh ghi trong nhóm cũng dùng vào những chức năng riêng biệt. Trong assembler, chúng được chuẩn hoá như một phần của RISC-V API (Application Binary Interface).
 
 Register  | ABI         | Use by convention                     | Preserved?
 :-------- | :---------- | :---------------                      | ------
@@ -93,20 +99,21 @@ function calls, while the **argument registers** `a0` to `a7` and the
 specialized registers such as `sp` by convention will be discussed later in more
 detail.
 
-## Control registers
+Một luật chung, thanh ghi s0 đến s11 (saved registers) là các thanh ghi lưu trữ  dùng cho các lời gọi hàm, trong khi các thanh ghi a0 đến a7 (argument registers) để chứa các đối số truyền vào cho hàm và thanh ghi t0 đến t6 (temporary registers) dùng để chứ tạm thời các giá trị.
+## Control registers - Thanh ghi điều khiển
 
 (TBA)
 
-## Floating Point registers (RV32F)
+## Floating Point registers (RV32F) - Thanh ghi dấu chấm động
 
 (TBA)
 
-## Vector registers (RV32V)
+## Vector registers (RV32V) - Thanh ghi vector
 
 (TBA)
 
 
-# Addressing
+# Addressing - Địa chỉ
 
 Addressing formats like %pcrel_lo().  We can just link to the RISC-V PS ABI
 document to describe what the relocations actually do.
